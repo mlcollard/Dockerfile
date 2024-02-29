@@ -7,6 +7,7 @@ ENV TZ=US/Michigan
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
+        ccache \
         g++ \
         git \
         make \
@@ -20,3 +21,7 @@ RUN apt-get update && \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+# Put ccache into the path
+ENV PATH /usr/lib/ccache:$PATH
+RUN export PATH=/usr/lib/ccache/:$PATH
